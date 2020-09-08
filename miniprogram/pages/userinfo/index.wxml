@@ -1,0 +1,7 @@
+<i-notice-bar icon="systemprompt" loop>
+    本页面仅用于显示您的基本信息，若想修改信息请前往编辑栏
+</i-notice-bar>
+<i-input value="{{ username }}" title="用户名" disabled />
+<i-input value="{{ tel }}" title="联系电话" disabled />
+<i-input value="{{ addr }}" title="地址" disabled />
+<i-input value="{{ usertype }}" title="用户类型" disabled />

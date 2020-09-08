@@ -1,0 +1,47 @@
+<!--miniprogram/pages/createMarker/createMarker.wxml-->
+
+<i-row>
+    标题：创建自己的摊位（待改）
+</i-row>
+
+<!-- 用户 openid -->
+<view class="userinfo">
+    <button 
+      open-type="getUserInfo" 
+      bindgetuserinfo="onGetUserInfo"
+      class="userinfo-avatar"
+      style="background-image: url({{avatarUrl}})"
+      size="default"
+    ></button>
+    <view class="userinfo-nickname-wrapper">
+      <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button>
+    </view>
+</view>
+<!-- 上传图片 -->
+<view class="uploader">
+    <view class="uploader-text" bindtap="doUpload">
+      <text>上传摊位图片</text>
+    </view>
+    <view class="uploader-container" wx:if="{{imgUrl}}">
+      <image class="uploader-image" src="{{imgUrl}}" mode="aspectFit" bindtap="previewImg"></image>
+    </view>
+</view>
+
+<i-panel title="基本信息">
+    <i-input value="{{ marker_title }}" title="摊位名称" autofocus placeholder="名字" />
+    <i-input value="{{ value2 }}" type="number" title="联系电话" placeholder="请输入手机号" mode="wrapped" />
+    <i-input value="{{ marker_msg }}" type="textarea" title="摊位简介" placeholder="向他人介绍自己的摊位(最多200字)" maxlength="200" mode="wrapped" />
+</i-panel>
+
+<i-panel title="无标题输入框">
+    <i-input value="{{ value5 }}" placeholder="请输入收货人姓名" />
+</i-panel>
+
+<i-panel title="您摊点所在位置">
+    <view style="padding: 10px;">
+      <map></map>
+    </view>
+</i-panel>
+
+
+

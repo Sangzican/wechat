@@ -1,0 +1,25 @@
+<view class="top">
+	<image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+</view>
+<view class="content">
+	<view class="account">
+		<view class="title">用户名</view>
+		<view class="num"><input bindinput="upname" value="{{ username }}" placeholder="请输入用户名" placeholder-style="font-size:14px;" /></view>
+	</view>
+	<view class="hr"></view>
+	<view class="account">
+		<view class="title">联系电话</view>
+		<view class="num"><input bindinput="uptel" value="{{ tel }}" type="number" placeholder="请输入手机号" placeholder-style="font-size:15px;" /></view>
+	</view>
+	<view class="hr"></view>
+	<view class="account">
+		<view class="title">详细地址</view>
+		<view class="num"><input bindblur="upaddr" value="{{ addr }}" placeholder="请输入详细地址" placeholder-style="font-size:15px;" /></view>
+	</view>
+	<view class="hr"></view>
+	<view class="account">
+		<view class="title">用户类型</view>
+		<view class="num"><input value="{{ usertype }}" disabled /></view>
+	</view>
+</view>
+<button bindtap="updateInfo" class="btn" hover-class='btn_hover'>保存</button>

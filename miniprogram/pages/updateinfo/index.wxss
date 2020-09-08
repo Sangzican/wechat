@@ -1,0 +1,57 @@
+.top {
+    height: 250rpx;
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+}
+
+.avatar {
+    width: 148rpx;
+    height: 148rpx;
+    border-radius: 50%;
+    margin-top: 5%;
+}
+
+.content {
+    background-color: #fff;
+}
+
+.account {
+    display: flex;
+    flex-direction: row;
+    padding-left: 20px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    width: 90%;
+}
+
+.title {
+    color: #495060;
+    min-width: 65px;
+    padding-right: 10px
+}
+
+.hr {
+    border: 0.2px solid #80848f;
+    opacity: 0.3;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.btn {
+    width: 100%;
+    margin-top: 50rpx;
+    box-shadow: 0px 0px 2px #80848f;
+    background-color: #5cadff;
+
+}
+
+
+.btn_hover {
+    background-color: #2b85e4;
+}
+
+input {
+    color: rgb(80, 78, 78);
+    font-size: 15px;
+}
