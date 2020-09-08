@@ -4,8 +4,6 @@
     "pages/mine/index",
     "pages/updateinfo/index",
     "pages/userinfo/index",
-    "components/homepage/homepage",
-    "components/mine/mine",
     "pages/createMarker/createMarker"
   ],
   "window": {
