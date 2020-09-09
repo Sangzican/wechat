@@ -9,7 +9,10 @@ Page({
     userInfo: {},
     logged: false,
     takeSession: false,
-    requestResult: ''
+    requestResult: '',
+    imgUrl: '',
+    openid: '',
+    username: ''
   },
 
   /**
@@ -32,13 +35,16 @@ Page({
             success: res => {
               this.setData({
                 avatarUrl: res.userInfo.avatarUrl,
-                userInfo: res.userInfo
+                userInfo: res.userInfo,
+                username: res.userInfo.nickName
               })
             }
           })
         }
       }
     })
+
+    this.onGetOpenid();
 
   },
 
@@ -59,10 +65,12 @@ Page({
       data: {},
       success: res => {
         console.log('[云函数] [login] user openid: ', res.result.openid)
-        app.globalData.openid = res.result.openid
-        wx.navigateTo({
-          url: '../userConsole/userConsole',
-        })
+        this.setData({openid: res.result.openid})
+        // app.globalData.openid = res.result.openid
+        // wx.navigateTo({
+        //   url: '../userConsole/userConsole',
+        // })
+        // console.log(this.data.openid)
       },
       fail: err => {
         console.error('[云函数] [login] 调用失败', err)
@@ -75,6 +83,7 @@ Page({
 
   // 上传图片
   doUpload: function () {
+    let that = this;
     // 选择图片
     wx.chooseImage({
       count: 1,
@@ -89,17 +98,25 @@ Page({
         const filePath = res.tempFilePaths[0]
         
         // 上传图片
-        const cloudPath = 'my-image' + filePath.match(/\.[^.]+?$/)[0]
+        const cloudPath = 'markers_img/' + that.data.openid + 'marker_image' + filePath.match(/\.[^.]+?$/)[0]
         wx.cloud.uploadFile({
           cloudPath,
           filePath,
           success: res => {
             console.log('[上传文件] 成功：', res)
-
+            // 显示上传成功后的摊位图片
+            that.setData({
+              imgUrl: res.fileID
+            })
+            
             app.globalData.fileID = res.fileID
             app.globalData.cloudPath = cloudPath
             app.globalData.imagePath = filePath
+
+            // 更新用户数据
+
             
+
             wx.navigateTo({
               url: '../storageConsole/storageConsole'
             })

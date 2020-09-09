@@ -14,7 +14,8 @@
       size="default"
     ></button>
     <view class="userinfo-nickname-wrapper">
-      <button class="userinfo-nickname" bindtap="onGetOpenid">点击获取 openid</button>
+      <!-- <text class="userinfo-nickname">你好 {{username}} </text> -->
+      <button class="userinfo-nickname" >你好{{username}}，来创建属于你自己的摊位吧！</button>
     </view>
 </view>
 <!-- 上传图片 -->
