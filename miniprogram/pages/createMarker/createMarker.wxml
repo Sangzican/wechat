@@ -29,19 +29,23 @@
 </view>
 
 <i-panel title="基本信息">
-    <i-input value="{{ marker_title }}" title="摊位名称" autofocus placeholder="名字" />
-    <i-input value="{{ value2 }}" type="number" title="联系电话" placeholder="请输入手机号" mode="wrapped" />
-    <i-input value="{{ marker_msg }}" type="textarea" title="摊位简介" placeholder="向他人介绍自己的摊位(最多200字)" maxlength="200" mode="wrapped" />
+    <i-input value="{{ marker_title }}" title="摊位名称" autofocus placeholder="名字" mode="wrapped" bind:change="getmarker_title"/>
+    <i-input value="{{ marker_phone }}" type="number" title="联系电话" placeholder="请输入手机号" mode="wrapped" bind:change="getmarker_phone"/>
+
 </i-panel>
 
-<i-panel title="无标题输入框">
-    <i-input value="{{ value5 }}" placeholder="请输入收货人姓名" />
+<i-panel title="摊点介绍">
+    <i-input value="{{ marker_msg }}" type="textarea" placeholder="向他人介绍自己的摊位(最多200字)" maxlength="200" bind:change="getmarker_msg"/>
 </i-panel>
 
 <i-panel title="您摊点所在位置">
     <view style="padding: 10px;">
-      <map></map>
+      <map show-location longitude="{{marker_longitude}}" latitude="{{marker_latitude}}"></map>
     </view>
+</i-panel>
+
+<i-panel>
+  <i-button bind:click="uploadMarker">创建摊位！</i-button>
 </i-panel>
 
 
