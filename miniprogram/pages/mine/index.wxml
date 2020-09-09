@@ -6,6 +6,7 @@
     <i-cell title="用户信息" is-link url="/pages/userinfo/index"><i-icon slot="icon" type="addressbook" size="22" color="#f4d307" /></i-cell>
     <view style="margin-top:10px;"></view>
     <i-cell title="编辑个人资料" is-link url="/pages/updateinfo/index"><i-icon slot="icon" type="brush" size="22" color="#f4d307" /></i-cell>
+    <view style="margin-top:10px;"></view>
     <i-cell title="我的收藏" is-link url="/pages/dashboard/index"><i-icon slot="icon" type="collection" size="22" color="#f4d307" /></i-cell>
     <i-cell title="我要摆摊" is-link url="/pages/createMarker/createMarker"><i-icon slot="icon" type="add" size="22" color="#f4d307" /></i-cell>
 </i-cell-group>
