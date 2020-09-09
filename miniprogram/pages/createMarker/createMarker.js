@@ -1,6 +1,8 @@
 // miniprogram/pages/createMarker/createMarker.js
+let marker_title
+let marker_phone
+let marker_msg
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -12,13 +14,19 @@ Page({
     requestResult: '',
     imgUrl: '',
     openid: '',
-    username: ''
+    username: '',
+    marker_title: '',
+    marker_phone: '',
+    marker_msg: '',
+    marker_longitude: '',
+    marker_latitude: '',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    let that = this;
     if (!wx.cloud) {
       wx.redirectTo({
         url: '../chooseLib/chooseLib',
@@ -46,6 +54,16 @@ Page({
 
     this.onGetOpenid();
 
+    wx.getLocation({
+      type: 'gcj02',
+      success: function (res) {
+        that.setData({
+          marker_longitude: res.longitude,
+          marker_latitude: res.latitude,
+        })
+      }
+    })
+    // that.myMapContext.moveToLocation();
   },
 
   onGetUserInfo: function(e) {
@@ -136,6 +154,53 @@ Page({
       },
       fail: e => {
         console.error(e)
+      }
+    })
+  },
+
+  // 获取输入内容并放入data
+  getmarker_msg: function(e) {
+    marker_msg = e.detail.detail.value
+  },
+  getmarker_title: function(e) {
+    marker_title = e.detail.detail.value
+  },
+  getmarker_phone: function(e) {
+    marker_phone = e.detail.detail.value
+  },
+
+  // 上传摊点信息
+  uploadMarker: function() {
+    let that = this;
+    this.setData({
+      marker_title: marker_title,
+      marker_phone: marker_phone,
+      marker_msg: marker_msg
+    })
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'uploadMarker',
+      data: {
+        imgUrl: that.data.imgUrl,
+        openid: that.data.openid,
+        username: that.data.username,
+        marker_title: that.data.marker_title,
+        marker_phone: that.data.marker_phone,
+        marker_msg: that.data.marker_msg,
+        marker_longitude: that.data.marker_longitude,
+        marker_latitude: that.data.marker_latitude,
+      },
+      success: res => {
+        console.log('[云函数] [uploadMarker] user openid: ', res.result.openid)
+        // 提示用户上传成功
+        // 还没写
+       
+      },
+      fail: err => {
+        console.error('[云函数] [uploadMarker] 调用失败', err)
+        wx.navigateTo({
+          url: '../deployFunctions/deployFunctions',
+        })
       }
     })
   },
