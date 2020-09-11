@@ -4,7 +4,8 @@
     "pages/mine/index",
     "pages/updateinfo/index",
     "pages/userinfo/index",
-    "pages/createMarker/createMarker"
+    "pages/createMarker/createMarker",
+    "pages/myCollect/myCollect"
   ],
   "window": {
     "backgroundColor": "#fff",
@@ -16,22 +17,22 @@
   "tabBar": {
     "list": [
       {
-      "pagePath": "pages/map/map",
-      "text": "首页",
-      "iconPath": "icons/home.png",
-      "selectedIconPath": "icons/shome.png"
-    },
-    {
-      "pagePath": "pages/mine/index",
-      "text": "我的",
-      "iconPath": "icons/mine.png",
-      "selectedIconPath": "icons/smine.png"
-    }
-  ],
-  "color": "#80848f",
-  "selectedColor":"#80848f",
-  "backgroundColor":"#fff",
-  "borderStyle":"white"
+        "pagePath": "pages/map/map",
+        "text": "首页",
+        "iconPath": "icons/home.png",
+        "selectedIconPath": "icons/shome.png"
+      },
+      {
+        "pagePath": "pages/mine/index",
+        "text": "我的",
+        "iconPath": "icons/mine.png",
+        "selectedIconPath": "icons/smine.png"
+      }
+    ],
+    "color": "#80848f",
+    "selectedColor": "#80848f",
+    "backgroundColor": "#fff",
+    "borderStyle": "white"
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2",
