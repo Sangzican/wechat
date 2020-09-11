@@ -1,12 +1,12 @@
 <!--miniprogram/pages/myCollect/myCollect.wxml-->
 <view>丑丑的标题——我的收藏</view>
 <!-- 放置动态增加的卡片 -->
-<view wx:for="{{array}}" wx:key="id">
-<i-card title="卡片标题" extra="额外内容" thumb="https://i.loli.net/2017/08/21/599a521472424.jpg" id="{{stv.id[index]}}">
-    <view slot="content">内容不错</view>
-    <view slot="footer">尾部内容
-      <i-button bind:click="handleClick" type="success" shape="circle" size="small" inline>显示店铺位置</i-button>
-      <i-button bind:click="handleClick" type="success" shape="circle" size="small" inline>取消收藏</i-button>
+<view wx:for="{{markers}}" wx:key="_id">
+<i-card title="{{item.title}}" extra="放置评分的地方" thumb="{{item.imgUrl}}" id="{{item.id}}">
+    <view slot="content">{{item.marker_msg}}</view>
+    <view slot="footer">摊主：{{item.user_name}} 联系方式：{{item.marker_phone}}
+      <i-button bind:click="getCollections" type="success" shape="circle" size="small">显示店铺位置</i-button>
+      <i-button bind:click="handleClick" type="success" shape="circle" size="small">取消收藏</i-button>
     </view>
 </i-card>
 </view>

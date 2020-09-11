@@ -29,7 +29,7 @@
 </view>
 
 <i-panel title="基本信息">
-    <i-input value="{{ marker_title }}" title="摊位名称" autofocus placeholder="名字" mode="wrapped" bind:change="getmarker_title"/>
+    <i-input value="{{ marker_title }}" title="摊位名称" autofocus placeholder="(最多10字)" mode="wrapped" bind:change="getmarker_title" maxlength="10"/>
     <i-input value="{{ marker_phone }}" type="number" title="联系电话" placeholder="请输入手机号" mode="wrapped" bind:change="getmarker_phone"/>
 
 </i-panel>
