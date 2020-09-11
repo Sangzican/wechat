@@ -34,7 +34,7 @@ Page({
         // wx.showToast({
         //   title: '调用成功',
         // })
-        console.log(res.result.data[0].title);
+        console.log(res.result);
         let marker = res.result.data[0];
         that.myMapContext.moveToLocation({
           longitude: marker.longitude,
@@ -95,6 +95,11 @@ Page({
     this.getMarks(e.markerId);
     let marker = this.data.marker;
     console.log(marker);
+    // console.log(this.data.marker)
+    // this.setData({
+    //   marker: marker
+    // })
+    // console.log(2333 + this.data.marker)
     this.showCard();
   },
   // 显示/隐藏摊点信息卡片

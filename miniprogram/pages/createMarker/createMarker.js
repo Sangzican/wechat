@@ -193,7 +193,9 @@ Page({
       success: res => {
         console.log('[云函数] [uploadMarker] user openid: ', res.result.openid)
         // 提示用户上传成功
-        // 还没写
+        wx.showToast({
+          title: '创建成功',
+        })
        
       },
       fail: err => {
