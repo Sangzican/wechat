@@ -1,27 +1,45 @@
-
-<searchHaveHistory id="history"
-    bind:searchEvent="searchEvent">
-</searchHaveHistory>
-
-<view class="view">
-	<map class="newmap" id="newmap" longitude="{{setting.longitude}}" latitude="{{setting.latitude}}" markers="{{markers}}" show-location="true" bindcontroltap="mapControlTap" enable-overlooking enable-rotate bindmarkertap="clickMarkTap">
-
-		<!-- 将用户位置移动至视觉中心，暂时未解决中心移动偏移的问题 -->
-		<view class="dingwei">
-			<button class="dingwei" bindtap="getLocation">
-				<image class="dingwei-img" src="../../images/dingwei.png"></image>
-			</button>
+<view wx:if="{{isHide}}">
+	<view wx:if="{{canIUse}}">
+		<view class='header'>
+			<image src='../../icons/login.png'></image>
 		</view>
 
-		<!-- 显示地摊信息卡片，暂时未解决弹窗后用户滑动卡片时同时会移动地图的问题 -->
-		<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
-		<view class="modalDlg" wx:if="{{showModal}}">
-			<!-- <image src="/figures/logo-smile.png"/> -->
-			<text>{{marker.title}}~</text>
-			<text>{{marker}}</text>
-			<button bindtap="hideCard">点我可以关掉对话框</button>
+		<view class='content'>
+			<view>申请获取以下权限</view>
+			<text>获得你的公开信息(昵称，头像等)</text>
 		</view>
-		<!-- <button bindtap="showCard">点我弹窗</button> -->
 
-	</map>
+		<button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
+			授权登录
+		</button>
+	</view>
+	<view wx:else>请升级微信版本</view>
+</view>
+<view wx:else>
+	<!-- 带搜索记录的搜索框 -->
+	<searchHaveHistory id="history" bind:searchEvent="searchEvent">
+	</searchHaveHistory>
+
+	<view class="view">
+		<map class="newmap" id="newmap" longitude="{{setting.longitude}}" latitude="{{setting.latitude}}" markers="{{markers}}" show-location="true" bindcontroltap="mapControlTap" enable-overlooking enable-rotate bindmarkertap="clickMarkTap">
+
+			<!-- 将用户位置移动至视觉中心，暂时未解决中心移动偏移的问题 -->
+			<view class="dingwei">
+				<button class="dingwei" bindtap="getLocation">
+					<image class="dingwei-img" src="../../images/dingwei.png"></image>
+				</button>
+			</view>
+
+			<!-- 显示地摊信息卡片，暂时未解决弹窗后用户滑动卡片时同时会移动地图的问题 -->
+			<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+			<view class="modalDlg" wx:if="{{showModal}}">
+				<!-- <image src="/figures/logo-smile.png"/> -->
+				<text>{{marker.title}}~</text>
+				<text>{{marker}}</text>
+				<button bindtap="hideCard">点我可以关掉对话框</button>
+			</view>
+			<!-- <button bindtap="showCard">点我弹窗</button> -->
+
+		</map>
+	</view>
 </view>
