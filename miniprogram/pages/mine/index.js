@@ -1,10 +1,13 @@
 let app = getApp
+const db = wx.cloud.database()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    isHide: true,
+    openid: '',
     iconSize: [20, 30, 40, 50, 60, 70],
     iconColor: [
       'red', 'orange', 'yellow', 'green', 'rgb(0,255,255)', 'blue', 'purple'
@@ -18,7 +21,21 @@ Page({
       nickName: "", //用户昵称
     },
     usertype: '普通用户'
-
+  },
+  //获取openid
+  getopenid() {
+    var that = this;
+    wx.cloud.callFunction({
+      name: "getopenid",
+      success(res) {
+        that.setData({
+          openid: res.result.openid
+        })
+      },
+      fail(res) {
+        console.log("获取失败！", res)
+      }
+    })
   },
   /**
    *点击添加地址事件
@@ -46,7 +63,19 @@ Page({
           [nickName]: res.userInfo.nickName,
         })
       }
+    });
+    //查询摊主表，判断是否为摊主
+    db.collection('Markers').where({
+      user_openid: this.data.openid
     })
+    .get({
+      success: function (res) {
+        that.setData({
+          isHide: false,
+          usertype:'摊主'
+        })
+      }
+    });
   },
 
   /**
@@ -59,8 +88,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-  },
+  onShow: function () {},
 
   /**
    * 生命周期函数--监听页面隐藏

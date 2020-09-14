@@ -1,1 +1,17 @@
-/* miniprogram/pages/myCollect/myCollect.wxss */
+.btn1:not([size='mini']) {
+    padding: 0rpx;
+    margin: 0rpx;
+    font-size: 12px;
+    width: 40%;
+    float: left;
+    margin-left: 30rpx;
+}
+
+.btn2:not([size='mini']) {
+    padding: 0rpx;
+    margin: 0rpx;
+    font-size: 12px;
+    width: 40%;
+    float: right;
+    margin-right: 30rpx;
+}
