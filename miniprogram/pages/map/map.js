@@ -124,7 +124,7 @@ Page({
         if (res.authSetting['scope.userInfo']) { //授权了，可以获取用户信息了
           wx.getUserInfo({
             success: (res) => {
-              console.log(res)
+              // console.log(res)
             }
           })
         } else { //未授权，跳到授权页面
@@ -204,6 +204,7 @@ Page({
     console.log("用户搜索" + e.detail)
     setTimeout(() => {
       wx.hideLoading();
+      // 一秒后执行该位置代码
     }, 1000)
   },
   // /**

@@ -83,6 +83,9 @@ Component({
     },
     getResult(inputVal) { 
       this.triggerEvent("searchEvent",inputVal);
+      this.setData({
+        inputValue: ''
+      })
     }
   }
 })

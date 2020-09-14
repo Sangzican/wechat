@@ -17,7 +17,7 @@
 </view>
 <view wx:else>
 	<!-- 带搜索记录的搜索框 -->
-	<searchHaveHistory id="history" bind:searchEvent="searchEvent">
+	<searchHaveHistory id="history" bind:searchEvent="searchEvent" placeholderText="请输入摊点名称">
 	</searchHaveHistory>
 
 	<view class="view">
