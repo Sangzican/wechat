@@ -2,7 +2,7 @@
   <navigator open-type='navigateBack'>返回</navigator>
   <view class='search-container'>
     <icon type="search" size='14' />
-    <input placeholder='{{placeholderText}}' bindinput='bindInput' bindconfirm='setSearchStorage' bindfocus="bindFocus" confirm-type="search" value='{{inputValue}}'></input>
+    <input placeholder='{{placeholderText}}' bindinput='bindInput' bindconfirm='setSearchStorage' bindfocus="bindFocus" bindblur="bindBlur" confirm-type="search" value='{{inputValue}}'></input>
   </view>
 </view>
 <view class='result-container'>

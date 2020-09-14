@@ -2,10 +2,11 @@
   "pages": [
     "pages/map/map",
     "pages/myCollect/myCollect",
-    "pages/mine/index",
+    "pages/mine/mine",
     "pages/updateinfo/index",
     "pages/userinfo/index",
     "pages/createMarker/createMarker"
+    
   ],
   "window": {
     "backgroundColor": "#fff",
@@ -22,7 +23,7 @@
         "selectedIconPath": "icons/shome.png"
       },
       {
-        "pagePath": "pages/mine/index",
+        "pagePath": "pages/mine/mine",
         "text": "我的",
         "iconPath": "icons/mine.png",
         "selectedIconPath": "icons/smine.png"
