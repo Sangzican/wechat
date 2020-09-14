@@ -2,6 +2,7 @@
 let marker_title
 let marker_phone
 let marker_msg
+const db = wx.cloud.database()
 Page({
   /**
    * 页面的初始数据
@@ -14,6 +15,7 @@ Page({
     requestResult: '',
     imgUrl: '',
     openid: '',
+    id: '',
     username: '',
     marker_title: '',
     marker_phone: '',
@@ -66,7 +68,7 @@ Page({
     // that.myMapContext.moveToLocation();
   },
 
-  onGetUserInfo: function(e) {
+  onGetUserInfo: function (e) {
     if (!this.data.logged && e.detail.userInfo) {
       this.setData({
         logged: true,
@@ -76,14 +78,16 @@ Page({
     }
   },
 
-  onGetOpenid: function() {
+  onGetOpenid: function () {
     // 调用云函数
     wx.cloud.callFunction({
       name: 'login',
       data: {},
       success: res => {
         console.log('[云函数] [login] user openid: ', res.result.openid)
-        this.setData({openid: res.result.openid})
+        this.setData({
+          openid: res.result.openid
+        })
         // app.globalData.openid = res.result.openid
         // wx.navigateTo({
         //   url: '../userConsole/userConsole',
@@ -114,7 +118,7 @@ Page({
         })
 
         const filePath = res.tempFilePaths[0]
-        
+
         // 上传图片
         const cloudPath = 'markers_img/' + that.data.openid + 'marker_image' + filePath.match(/\.[^.]+?$/)[0]
         wx.cloud.uploadFile({
@@ -126,14 +130,14 @@ Page({
             that.setData({
               imgUrl: res.fileID
             })
-            
+
             app.globalData.fileID = res.fileID
             app.globalData.cloudPath = cloudPath
             app.globalData.imagePath = filePath
 
             // 更新用户数据
 
-            
+
 
             wx.navigateTo({
               url: '../storageConsole/storageConsole'
@@ -159,19 +163,42 @@ Page({
   },
 
   // 获取输入内容并放入data
-  getmarker_msg: function(e) {
+  getmarker_msg: function (e) {
     marker_msg = e.detail.detail.value
   },
-  getmarker_title: function(e) {
+  getmarker_title: function (e) {
     marker_title = e.detail.detail.value
   },
-  getmarker_phone: function(e) {
+  getmarker_phone: function (e) {
     marker_phone = e.detail.detail.value
   },
-
   // 上传摊点信息
-  uploadMarker: function() {
+  uploadMarker: function () {
     let that = this;
+    db.collection('users').where({
+        _openid: this.data.openid
+      })
+      .get({
+        success: function (res) {
+          that.setData({
+            id: res.data[0]._id,
+          })
+        },
+        fail: function (res) {
+          console.log("查询失败")
+        }
+      })
+    db.collection('users').doc(this.data.id).update({
+      data: {
+        usertype: '摊主'
+      },
+      success(res) {
+        console.log('修改成功')
+      },
+      fail(res) {
+        console.log("修改失败！")
+      }
+    })
     this.setData({
       marker_title: marker_title,
       marker_phone: marker_phone,
@@ -196,7 +223,9 @@ Page({
         wx.showToast({
           title: '创建成功',
         })
-       
+        wx.redirectTo({
+          url: '../mine/index',
+        })
       },
       fail: err => {
         console.error('[云函数] [uploadMarker] 调用失败', err)

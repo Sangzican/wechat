@@ -64,16 +64,20 @@ Page({
         })
       }
     });
-    //查询摊主表，判断是否为摊主
-    db.collection('Markers').where({
-      user_openid: this.data.openid
+    //查询用户表，判断是否为摊主
+    db.collection('users').where({
+      _openid: this.data.openid
     })
     .get({
       success: function (res) {
-        that.setData({
-          isHide: false,
-          usertype:'摊主'
-        })
+        console.log(11111);
+        console.log(res.data[0].usertype);
+        if(res.data[0].usertype==='摊主'){
+          that.setData({
+              isHide: false,
+              usertype:'摊主'
+            })
+        }
       }
     });
   },
