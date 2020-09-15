@@ -47,3 +47,7 @@
   height: 360rpx;
 }
 
+map {
+  height: 30vh;
+  width: 100vh;
+}
