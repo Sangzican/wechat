@@ -136,9 +136,6 @@ Page({
             app.globalData.imagePath = filePath
 
             // 更新用户数据
-
-
-
             wx.navigateTo({
               url: '../storageConsole/storageConsole'
             })

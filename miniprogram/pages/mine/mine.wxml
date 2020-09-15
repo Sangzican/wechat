@@ -23,7 +23,15 @@
 	</view>
 	<view wx:else>
 		<i-cell title="注销摊主身份" is-link bind:click='deluser'>
-            <i-icon slot="icon" type="delete" size="22" color="#f4d307" />
+			<i-icon slot="icon" type="delete" size="22" color="#f4d307" />
 		</i-cell>
+
+		<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
+		<view class="modalDlg" wx:if="{{showModal}}">
+			<text>确定注销您的摊主身份吗</text>
+			<button bindtap="hideCard">再想想</button>
+			<button bindtap="removeuser">确定</button>
+		</view>
+		
 	</view>
 </i-cell-group>
