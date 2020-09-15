@@ -1,13 +1,11 @@
 let app = getApp
 const db = wx.cloud.database()
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
+    showModal: false,
     isHide: true,
     openid: '',
+    id:'',
     iconSize: [20, 30, 40, 50, 60, 70],
     iconColor: [
       'red', 'orange', 'yellow', 'green', 'rgb(0,255,255)', 'blue', 'purple'
@@ -21,6 +19,42 @@ Page({
       nickName: "", //用户昵称
     },
     usertype: '普通用户'
+  },
+  deluser: function () {
+    this.setData({
+      showModal: true
+    })
+  },
+  hideCard: function () {
+    this.setData({
+      showModal: false
+    });
+  },
+  removeuser:function(){
+    var that=this;
+    this.getopenid();//更新openid
+    db.collection('Markers').where({
+     user_openid: this.data.openid
+    })
+    .get({
+      success: function (res) {
+        that.setData({
+          id: res.data[0]._id,
+        })
+        console.log('查询成功')
+      },
+      fail: function (res) {
+        console.log("查询失败")
+      }
+    })
+    // db.collection('Markers').doc(this.data.id).remove({
+    //   success: function(res) {
+    //     console.log("注销成功！")
+    //   },
+    //   fail: function (res) {
+    //     console.log("注销失败")
+    //   }
+    // })
   },
   //获取openid
   getopenid() {
@@ -66,18 +100,18 @@ Page({
     });
     //查询用户表，判断是否为摊主
     db.collection('users').where({
-      _openid: this.data.openid
-    })
-    .get({
-      success: function (res) {
-        if(res.data[0].usertype==='摊主'){
-          that.setData({
+        _openid: this.data.openid
+      })
+      .get({
+        success: function (res) {
+          if (res.data[0].usertype === '摊主') {
+            that.setData({
               isHide: false,
-              usertype:'摊主'
+              usertype: '摊主'
             })
+          }
         }
-      }
-    });
+      });
   },
 
   /**
