@@ -39,7 +39,7 @@
 </i-panel>
 
 <i-panel title="您摊点所在位置">
-    <view style="padding: 10px;">
+    <view >
       <map show-location longitude="{{marker_longitude}}" latitude="{{marker_latitude}}"></map>
     </view>
 </i-panel>
