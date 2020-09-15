@@ -70,8 +70,6 @@ Page({
     })
     .get({
       success: function (res) {
-        console.log(11111);
-        console.log(res.data[0].usertype);
         if(res.data[0].usertype==='摊主'){
           that.setData({
               isHide: false,

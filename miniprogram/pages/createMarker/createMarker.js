@@ -190,7 +190,8 @@ Page({
       })
     db.collection('users').doc(this.data.id).update({
       data: {
-        usertype: '摊主'
+        usertype: '摊主',
+        done: true
       },
       success(res) {
         console.log('修改成功')
