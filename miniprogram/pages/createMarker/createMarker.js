@@ -225,7 +225,7 @@ Page({
           title: '创建成功',
         })
         wx.redirectTo({
-          url: '../mine/index',
+          url: '../mine/mine',
         })
       },
       fail: err => {

@@ -22,6 +22,9 @@ Component({
     bindFocus() { 
       this.setData({ StorageFlag: true })
     },
+    bindBlur() {
+      this.setData({ StorageFlag: false })
+    },
     bindInput(e) {
       this.setData({ inputValue: e.detail.value })
     },
