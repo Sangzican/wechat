@@ -30,23 +30,28 @@ Page({
       showModal: false
     });
   },
-  removeuser:function(){
-    var that=this;
-    this.getopenid();//更新openid
-    db.collection('Markers').where({
-     user_openid: this.data.openid
-    })
-    .get({
-      success: function (res) {
-        that.setData({
-          id: res.data[0]._id,
-        })
-        console.log('查询成功')
+  getMarkerByUser: function() {
+    let that = this
+    wx.cloud.callFunction({
+      // 云函数名称
+      name: 'getMarkerByUser',
+      // 传给云函数的参数
+      data: {
+        openid: that.data.openid
       },
-      fail: function (res) {
-        console.log("查询失败")
-      }
+      success: function(res) {
+        console.log(res.result.data[0])
+        that.setData({
+          id: res.result.data[0]._id
+        })
+        console.log(that.data.id)
+      },
+      fail: console.error
     })
+  },
+  removeuser:function(){
+    let that=this;
+    console.log(that.data.openid)
     // db.collection('Markers').doc(this.data.id).remove({
     //   success: function(res) {
     //     console.log("注销成功！")
@@ -62,9 +67,11 @@ Page({
     wx.cloud.callFunction({
       name: "getopenid",
       success(res) {
+        console.log('success')
         that.setData({
           openid: res.result.openid
         })
+        that.getMarkerByUser();
       },
       fail(res) {
         console.log("获取失败！", res)
@@ -85,6 +92,7 @@ Page({
    */
   onLoad: function (options) {
     let that = this;
+    this.getopenid();
     /**
      * 获取用户信息
      */
