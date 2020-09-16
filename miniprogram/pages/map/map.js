@@ -14,6 +14,8 @@ Page({
     markers: [],
     marker: {},
     showModal: false,
+    openid: '',
+    isCollected: false
   },
   handleChange({
     detail
@@ -43,7 +45,7 @@ Page({
         that.setData({
           marker: marker,
         });
-
+        that.getCollectionList()
       },
       fail: err => {
         wx.showToast({
@@ -95,11 +97,6 @@ Page({
     this.getMarks(e.markerId);
     let marker = this.data.marker;
     console.log(marker);
-    // console.log(this.data.marker)
-    // this.setData({
-    //   marker: marker
-    // })
-    // console.log(2333 + this.data.marker)
     this.showCard();
   },
   // 显示/隐藏摊点信息卡片
@@ -118,7 +115,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getopenid()
     wx.getSetting({
       success: (res) => {
         if (res.authSetting['scope.userInfo']) { //授权了，可以获取用户信息了
@@ -207,6 +204,84 @@ Page({
       // 一秒后执行该位置代码
     }, 1000)
   },
+  //获取openid
+  getopenid() {
+    var that = this;
+    wx.cloud.callFunction({
+      name: "getopenid",
+      success(res) {
+        console.log('获取到openid')
+        that.setData({
+          openid: res.result.openid
+        })
+      },
+      fail(res) {
+        console.log("获取失败！", res)
+      }
+    })
+  },
+  // 收藏按钮功能
+  collictMarker() {
+    let that = this;
+    wx.cloud.callFunction({
+      // 云函数名称 不要改名字
+      name: 'addCollicton',
+      // 传给云函数的参数
+      data: {
+        openid: that.data.openid,
+        _id: that.data.marker._id
+      },
+      success: function(res) {
+        that.setData({
+          isCollected: true
+        })
+        console.log(res)
+      },
+      fail: console.error
+    })
+  },
+  removeCollect() {
+    let that = this;
+    wx.cloud.callFunction({
+      // 云函数名称
+      name: 'removeCollect',
+      // 传给云函数的参数
+      data: {
+        openid: that.data.openid,
+        _id: that.data.marker._id
+      },
+      success: function(res) {
+        that.setData({
+          isCollected: false
+        })
+        console.log(res)
+      },
+      fail: console.error
+    })
+  },
+  getCollectionList() {
+    let that = this
+    wx.cloud.callFunction({
+      // 云函数名称
+      name: 'getCollectionList',
+      // 传给云函数的参数
+      data: {
+        _openid: that.data._openid,
+        _id: that.data.marker._id
+      },
+      success: function(res) {
+        if(res.result.data.length > 0)
+          that.setData({
+            isCollected: true
+          })
+        else 
+          that.setData({
+            isCollected: false
+          })
+      },
+      fail: console.error
+    })
+  }
   // /**
   //  * 生命周期函数--监听页面初次渲染完成
   //  */
