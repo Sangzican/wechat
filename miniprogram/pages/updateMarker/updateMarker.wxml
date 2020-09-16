@@ -1,8 +1,3 @@
-<!--miniprogram/pages/createMarker/createMarker.wxml-->
-
-<i-row>
-    标题：创建自己的摊位（待改）
-</i-row>
 
 <!-- 用户 openid -->
 <view class="userinfo">
@@ -15,7 +10,6 @@
     ></button>
     <view class="userinfo-nickname-wrapper">
       <!-- <text class="userinfo-nickname">你好 {{username}} </text> -->
-      <button class="userinfo-nickname" >你好{{username}}，来创建属于你自己的摊位吧！</button>
     </view>
 </view>
 <!-- 上传图片 -->
@@ -45,8 +39,6 @@
 </i-panel>
 
 <i-panel>
-  <i-button bind:click="uploadMarker">创建摊位！</i-button>
+  <i-button bind:click="updateMarker">保存信息</i-button>
 </i-panel>
 <i-message id="message" />
-
-

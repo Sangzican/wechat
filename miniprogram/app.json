@@ -5,15 +5,16 @@
     "pages/mine/mine",
     "pages/updateinfo/index",
     "pages/userinfo/index",
-    "pages/createMarker/createMarker"
+    "pages/createMarker/createMarker",
+    "pages/updateMarker/updateMarker"
     
   ],
   "window": {
     "backgroundColor": "#fff",
+    "enablePullDownRefresh": true,
     "backgroundTextStyle": "dark",
-    "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTextStyle": "black",
-    "enablePullDownRefresh": true
+    "navigationBarBackgroundColor": "#f97783",
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "list": [{

@@ -1,6 +1,8 @@
 {
   "usingComponents": {
     "i-input": "../../dist/input/index",
-    "i-button": "../../dist/button/index"
-  }
+    "i-button": "../../dist/button/index",
+    "i-message": "../../dist/message/index"
+  },
+  "navigationBarTitleText": "修改基本信息"
 }

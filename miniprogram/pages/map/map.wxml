@@ -48,4 +48,5 @@
 
 		</map>
 	</view>
+	<i-message id="message" />
 </view>

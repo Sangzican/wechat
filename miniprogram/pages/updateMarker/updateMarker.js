@@ -30,6 +30,7 @@ Page({
         type: 'success'
     });
 },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -73,17 +74,8 @@ Page({
     })
     // that.myMapContext.moveToLocation();
     wx.stopPullDownRefresh()
-    wx.stopPullDownRefresh()
   },
-  //页面刷新
-  onPullDownRefresh: function () {
-    var that=this
-    this.onLoad()
-    setTimeout(function () {
-      //要延时执行的代码     
-      that.handleSuccess()
-    }, 1000)
-  },
+
   onGetUserInfo: function (e) {
     if (!this.data.logged && e.detail.userInfo) {
       this.setData({
@@ -185,8 +177,8 @@ Page({
   getmarker_phone: function (e) {
     marker_phone = e.detail.detail.value
   },
-  // 上传摊点信息
-  uploadMarker: function () {
+  // 修改摊点信息
+  updateMarker: function () {
     let that = this;
     db.collection('users').where({
         _openid: this.data.openid
@@ -249,5 +241,12 @@ Page({
       }
     })
   },
-
+  onPullDownRefresh(){
+    var that=this
+    this.onLoad()
+    setTimeout(function () {
+      //要延时执行的代码     
+      that.handleSuccess()
+    }, 1000)
+  }
 })

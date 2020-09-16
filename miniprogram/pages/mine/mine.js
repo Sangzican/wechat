@@ -1,11 +1,14 @@
 let app = getApp
 const db = wx.cloud.database()
+const {
+  $Message
+} = require('../../dist/base/index');
 Page({
   data: {
     showModal: false,
     isHide: true,
     openid: '',
-    id:'',
+    id: '',
     iconSize: [20, 30, 40, 50, 60, 70],
     iconColor: [
       'red', 'orange', 'yellow', 'green', 'rgb(0,255,255)', 'blue', 'purple'
@@ -20,6 +23,12 @@ Page({
     },
     usertype: '普通用户'
   },
+  handleSuccess() {
+    $Message({
+      content: '刷新成功',
+      type: 'success'
+    });
+  },
   deluser: function () {
     this.setData({
       showModal: true
@@ -30,7 +39,7 @@ Page({
       showModal: false
     });
   },
-  getMarkerByUser: function() {
+  getMarkerByUser: function () {
     let that = this
     wx.cloud.callFunction({
       // 云函数名称
@@ -39,7 +48,7 @@ Page({
       data: {
         openid: that.data.openid
       },
-      success: function(res) {
+      success: function (res) {
         console.log(res.result.data[0])
         that.setData({
           id: res.result.data[0]._id
@@ -49,8 +58,8 @@ Page({
       fail: console.error
     })
   },
-  removeuser:function(){
-    let that=this;
+  removeuser: function () {
+    let that = this;
     console.log(that.data.openid)
     // db.collection('Markers').doc(this.data.id).remove({
     //   success: function(res) {
@@ -91,6 +100,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.stopPullDownRefresh()
     let that = this;
     this.getopenid();
     /**
@@ -105,7 +115,7 @@ Page({
           [nickName]: res.userInfo.nickName,
         })
       }
-    });
+    })
     //查询用户表，判断是否为摊主
     db.collection('users').where({
         _openid: this.data.openid
@@ -118,8 +128,12 @@ Page({
               usertype: '摊主'
             })
           }
+        },
+        fail: function (res) {
+          console.log("查询失败！")
         }
-      });
+      })
+    wx.stopPullDownRefresh()
   },
 
   /**
@@ -152,7 +166,12 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    var that=this
+    this.onLoad()
+    setTimeout(function () {
+      //要延时执行的代码     
+      that.handleSuccess()
+    }, 1000)
   },
 
   /**
