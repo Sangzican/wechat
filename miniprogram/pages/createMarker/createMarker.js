@@ -73,7 +73,6 @@ Page({
     })
     // that.myMapContext.moveToLocation();
     wx.stopPullDownRefresh()
-    wx.stopPullDownRefresh()
   },
   //页面刷新
   onPullDownRefresh: function () {
@@ -201,7 +200,7 @@ Page({
           console.log("查询失败")
         }
       })
-    db.collection('users').doc(this.data.id).update({
+    db.collection('users').doc(this.data.id).update({ //******************************************************** */
       data: {
         usertype: '摊主',
         done: true
@@ -213,7 +212,7 @@ Page({
       fail(res) {
         console.log("修改失败！")
       }
-    })
+    })//*************************************************************************************** */
     this.setData({
       marker_title: marker_title,
       marker_phone: marker_phone,

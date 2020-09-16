@@ -58,6 +58,20 @@ Page({
       fail: console.error
     })
   },
+  removeuser:function(){
+    let that=this;
+    console.log(that.data.id)
+    db.collection('Markers').doc(that.data.id).remove({
+      success: function(res) {
+        console.log("注销成功！")
+      },
+      fail: function (res) {
+        console.log(res)
+        console.log("注销失败")
+      }
+    })
+  },
+
   //获取openid
   getopenid() {
     var that = this;
