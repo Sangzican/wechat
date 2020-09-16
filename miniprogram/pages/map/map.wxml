@@ -21,6 +21,7 @@
 	</searchHaveHistory>
 
 	<view class="view">
+		<!-- 地图 -->
 		<map class="newmap" id="newmap" longitude="{{setting.longitude}}" latitude="{{setting.latitude}}" markers="{{markers}}" show-location="true" bindcontroltap="mapControlTap" enable-overlooking enable-rotate bindmarkertap="clickMarkTap">
 
 			<!-- 将用户位置移动至视觉中心，暂时未解决中心移动偏移的问题 -->

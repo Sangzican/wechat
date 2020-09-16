@@ -15,7 +15,9 @@ Page({
     marker: {},
     showModal: false,
     openid: '',
-    isCollected: false
+    isCollected: false,
+    isShowResult: false,
+    resultMarkers: []
   },
   handleChange({
     detail
@@ -198,10 +200,16 @@ Page({
   },
   //搜索功能
   searchEvent(e) {
+    let that = this
     console.log("用户搜索" + e.detail)
+    let url = '../searchResult/searchResult?searchTitle=' + e.detail
+    // 跳转到搜索页面
+    wx.navigateTo({
+      url: url
+    })
     setTimeout(() => {
-      wx.hideLoading();
       // 一秒后执行该位置代码
+      wx.hideLoading();
     }, 1000)
   },
   //获取openid

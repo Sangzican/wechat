@@ -5,8 +5,8 @@
     "pages/mine/mine",
     "pages/updateinfo/index",
     "pages/userinfo/index",
-    "pages/createMarker/createMarker"
-    
+    "pages/createMarker/createMarker",
+    "pages/searchResult/searchResult"
   ],
   "window": {
     "backgroundColor": "#fff",
@@ -16,7 +16,8 @@
     "enablePullDownRefresh": true
   },
   "tabBar": {
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/map/map",
         "text": "首页",
         "iconPath": "icons/home.png",
