@@ -6,8 +6,9 @@
     "pages/updateinfo/index",
     "pages/userinfo/index",
     "pages/createMarker/createMarker",
-    "pages/updateMarker/updateMarker"
-    
+    "pages/updateMarker/updateMarker",
+    "pages/searchResult/searchResult"
+
   ],
   "window": {
     "backgroundColor": "#fff",
@@ -17,7 +18,8 @@
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/map/map",
         "text": "首页",
         "iconPath": "icons/home.png",

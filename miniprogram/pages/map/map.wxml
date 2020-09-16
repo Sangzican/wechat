@@ -21,6 +21,7 @@
 	</searchHaveHistory>
 
 	<view class="view">
+		<!-- 地图 -->
 		<map class="newmap" id="newmap" longitude="{{setting.longitude}}" latitude="{{setting.latitude}}" markers="{{markers}}" show-location="true" bindcontroltap="mapControlTap" enable-overlooking enable-rotate bindmarkertap="clickMarkTap">
 
 			<!-- 将用户位置移动至视觉中心，暂时未解决中心移动偏移的问题 -->
@@ -38,7 +39,8 @@
 					<view slot="footer">摊主：{{marker.user_name}} 联系方式：{{marker.marker_phone}}
 					<view>
 						<button class="btn1" bindtap="hideCard" plain>关闭</button>
-						<button class="btn2" bindtap="handleClick" plain>收藏</button>
+						<button class="btn2" bindtap="collictMarker" plain wx:if="{{!isCollected}}">收藏</button>
+						<button class="btn2" bindtap="removeCollect" plain wx:if="{{isCollected}}">取消收藏</button>
 					</view>
     		  <text>\n</text>
 					<view style="margin-top:8px;"></view>

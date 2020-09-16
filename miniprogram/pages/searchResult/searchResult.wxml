@@ -1,0 +1,22 @@
+<!--miniprogram/pages/searchResult/searchResult.wxml-->
+<text>miniprogram/pages/searchResult/searchResult.wxml</text>
+<text>搜索页面 {{searchTitle}}</text>
+
+<!-- 如果搜索结果为空显示该view -->
+<view wx:if="{{isNull}}">the search is null</view>
+
+<!-- 如果搜索结果不为空，显示搜索结果的卡片 -->
+<view wx:if="{{!isNull}}" wx:for="{{markers}}" wx:key="_id">
+	<i-card title="{{item.title}}" extra="放置评分的地方" thumb="{{item.imgUrl}}" id="{{item.id}}">
+		<view slot="content">{{item.marker_msg}}</view>
+		<view slot="footer">摊主：{{item.user_name}} 联系方式：{{item.marker_phone}}
+			<view>
+				<button class="btn1" bindtap="getCollections" plain>店铺位置</button>
+				<button class="btn2" bindtap="handleClick" plain>取消收藏</button>
+			</view>
+      <text>\n</text>
+			<view style="margin-top:8px;"></view>
+		</view>
+	</i-card>
+	<view style="margin-top:10px;"></view>
+</view>

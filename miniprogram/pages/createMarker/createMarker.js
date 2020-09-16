@@ -207,6 +207,7 @@ Page({
         done: true
       },
       success(res) {
+        console.log(res)
         console.log('修改成功')
       },
       fail(res) {

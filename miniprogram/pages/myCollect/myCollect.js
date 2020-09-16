@@ -25,6 +25,8 @@ Page({
         that.setData({
           openid: res.result.openid
         })
+        console.log(that.data.openid)
+        that.getCollections()
       },
       fail: err => {
         console.error('[云函数] [login] 调用失败', err)
@@ -39,13 +41,13 @@ Page({
   //用户收藏摊点的_id并放入自己的marker_collections数组中
   getCollections: function() {
     let that = this;
-    this.getOpenid();
     wx.cloud.callFunction({
       name: 'getCollection',
       data: {
         _openid: that.data.openid
       },
       success: res => {
+        console.log(res.result)
         that.setData({
           markers: res.result.data
         })
@@ -64,7 +66,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getCollections();
+    this.getOpenid()
     let that = this;
     wx.getSystemInfo({
       success: function (res) {
