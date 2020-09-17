@@ -1,8 +1,3 @@
-<!--miniprogram/pages/createMarker/createMarker.wxml-->
-
-<i-row>
-    标题：创建自己的摊位（待改）
-</i-row>
 
 <!-- 用户 openid -->
 <view class="userinfo">
@@ -14,8 +9,7 @@
       size="default"
     ></button>
     <view class="userinfo-nickname-wrapper">
-      <!-- <text class="userinfo-nickname">你好 {{username}} </text> -->
-      <button class="userinfo-nickname" >你好{{username}}，来创建属于你自己的摊位吧！</button>
+      <text class="userinfo-nickname">你好 {{username}} ，来创建属于你自己的摊位吧！</text>
     </view>
 </view>
 <!-- 上传图片 -->
@@ -43,10 +37,7 @@
       <map show-location longitude="{{marker_longitude}}" latitude="{{marker_latitude}}"></map>
     </view>
 </i-panel>
-
-<i-panel>
-  <i-button bind:click="uploadMarker">创建摊位！</i-button>
-</i-panel>
+<button class="btn" bindtap="uploadMarker">立即创建摊位！</button>
 <i-message id="message" />
 
 

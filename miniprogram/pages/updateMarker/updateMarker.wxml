@@ -38,7 +38,5 @@
     </view>
 </i-panel>
 
-<i-panel>
-  <i-button bind:click="updateMarker">保存信息</i-button>
-</i-panel>
+<button bindtap="uploadMarker" class="btn" hover-class='btn_hover'>保存</button>
 <i-message id="message" />

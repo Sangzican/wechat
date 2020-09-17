@@ -37,18 +37,19 @@
 				<i-card title="{{marker.title}}" extra="放置评分的地方" thumb="{{marker.imgUrl}}" id="{{item.id}}">
 					<view slot="content">{{marker.marker_msg}}</view>
 					<view slot="footer">摊主：{{marker.user_name}} 联系方式：{{marker.marker_phone}}
-					<view>
-						<button class="btn1" bindtap="hideCard" plain>关闭</button>
-						<button class="btn2" bindtap="collictMarker" plain wx:if="{{!isCollected}}">收藏</button>
-						<button class="btn2" bindtap="removeCollect" plain wx:if="{{isCollected}}">取消收藏</button>
-					</view>
-    		  <text>\n</text>
-					<view style="margin-top:8px;"></view>
+						<view>
+							<button class="btn1" bindtap="hideCard" plain>关闭</button>
+							<button class="btn2" bindtap="collictMarker" plain wx:if="{{!isCollected}}">收藏</button>
+							<button class="btn2" bindtap="removeCollect" plain wx:if="{{isCollected}}">取消收藏</button>
+						</view>
+						<text>\n</text>
+						<view style="margin-top:8px;"></view>
 					</view>
 				</i-card>
 			</view>
 
 		</map>
 	</view>
-	<i-message id="message" />
 </view>
+
+<i-message id="message" />

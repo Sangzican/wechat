@@ -2,7 +2,8 @@
   "usingComponents": {
     "i-card": "../../dist/card/index",
     "i-button": "../../dist/button/index",
-    "i-message": "../../dist/message/index"
+    "i-message": "../../dist/message/index",
+    "i-icon": "../../dist/icon/index"
   },
   "navigationBarTitleText": "我收藏的摊位"
 }

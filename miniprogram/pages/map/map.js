@@ -136,7 +136,9 @@ Page({
               // console.log(res)
             }
           })
+          wx.showTabBar()
         } else { //未授权，跳到授权页面
+          wx.hideTabBar()
           this.setData({
             isHide: true
           })

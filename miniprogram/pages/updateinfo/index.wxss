@@ -2,7 +2,7 @@
     height: 250rpx;
     display: flex;
     justify-content: center;
-    background-color: #fff;
+    background-image: linear-gradient(#f97783, #fff);
 }
 
 .avatar {
