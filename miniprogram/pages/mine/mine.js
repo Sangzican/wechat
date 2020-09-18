@@ -56,7 +56,13 @@ Page({
         })
         if(res.result.data.length < 1){
           that.setData({
-            usertype: "普通用户"
+            usertype: "普通用户",
+            isHide: true
+          })
+        }else {
+          that.setData({
+            usertype: "摊主",
+            isHide: false
           })
         }
         console.log(that.data.usertype)
@@ -64,10 +70,9 @@ Page({
       fail: function (res) {
         // console.error
         that.setData({
-          usertype : "普通用户"
+          usertype : "普通用户",
+          isHide: true
         })
-        console.log("用户类型为：")
-        console.log(that.data.usertype)
       }
     })
   },
@@ -95,6 +100,10 @@ Page({
           duration: 2000
          })
          // 更新用户身份
+         that.setData({
+           usertype: "普通用户",
+           isHide: true
+         })
     wx.cloud.callFunction({
       name: 'changeUserType',
       data: {
@@ -164,23 +173,24 @@ Page({
         })
       }
     })
-    //查询用户表，判断是否为摊主
-    db.collection('users').where({
-        _openid: this.data.openid
-      })
-      .get({
-        success: function (res) {
-          if (res.data[0].usertype === '摊主') {
-            that.setData({
-              isHide: false,
-              usertype: '摊主'
-            })
-          }
-        },
-        fail: function (res) {
-          console.log("查询失败！")
-        }
-      })
+    //查询用户表，判断是否为摊主  
+    // 因为更新数据库的代码有问题，所以用户是否为摊主由查询用户拥有摊点数量来判断
+    // db.collection('users').where({
+    //     _openid: this.data.openid
+    //   })
+    //   .get({
+    //     success: function (res) {
+    //       if (res.data[0].usertype === '摊主') {
+    //         that.setData({
+    //           isHide: false,
+    //           usertype: '摊主'
+    //         })
+    //       }
+    //     },
+    //     fail: function (res) {
+    //       console.log("查询失败！")
+    //     }
+    //   })
     wx.stopPullDownRefresh()
   },
 
