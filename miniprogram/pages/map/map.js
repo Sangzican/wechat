@@ -23,7 +23,6 @@ Page({
     resultMarkers: [],
     collerct: ""
   },
-  
   handleSuccess() {
     $Message({
       content: '刷新成功',
@@ -137,7 +136,9 @@ Page({
               // console.log(res)
             }
           })
+          wx.showTabBar()
         } else { //未授权，跳到授权页面
+          wx.hideTabBar()
           this.setData({
             isHide: true
           })
@@ -256,6 +257,7 @@ Page({
         that.setData({
           isCollected: true,
           collerct: "已"
+
         })
         console.log(res)
       },

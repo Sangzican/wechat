@@ -1,1 +1,10 @@
-/* miniprogram/pages/searchResult/searchResult.wxss */
+
+.text{
+    font-size: 18px;
+    color: #c2c2c2;
+    font-weight: 500;
+}
+.ic{
+    float: right;
+}
+

@@ -200,9 +200,11 @@ Page({
           console.log("查询失败")
         }
       })
+
     // 更新用户身份
     wx.cloud.callFunction({
       name: 'changeUserType',
+
       data: {
         openid: that.data.openid,
         usertype: "摊主"
@@ -212,7 +214,6 @@ Page({
         this.setData({
           openid: res.result.openid
         })
-
       },
       fail: err => {
         console.error('[云函数] [changeUserType] 调用失败', err)

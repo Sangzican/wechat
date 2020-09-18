@@ -51,6 +51,7 @@ Page({
       success: function (res) {
         console.log(res.result)
         if(res.result?.data[0]?._id != undefined)
+
         that.setData({
           id: res.result.data[0]._id
         })

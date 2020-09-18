@@ -51,4 +51,9 @@
     height: 30vh;
     width: 100vh;
   }
-  
+
+  .btn:not([size='mini']){
+    width: 90%;
+    background-color: #4bf7f6;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 1);
+  }  

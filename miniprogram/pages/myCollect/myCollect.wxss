@@ -15,3 +15,7 @@
     float: right;
     margin-right: 30rpx;
 }
+
+.ic{
+    float: right;
+}

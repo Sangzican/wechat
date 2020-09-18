@@ -6,7 +6,6 @@
     "i-card": "../../dist/card/index",
     "i-message": "../../dist/message/index",
     "i-modal": "../../dist/modal/index"
-
   },
   "navigationBarTitleText":"首页"
 }

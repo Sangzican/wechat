@@ -55,10 +55,14 @@
 					</view>
     		  <text>\n</text>
 					<view style="margin-top:8px;"></view>
+
 					</view>
 				</i-card> -->
 
 		</map>
 	</view>
+
 	<i-message id="message" />
 </view>
+
+

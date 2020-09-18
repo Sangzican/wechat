@@ -1,13 +1,13 @@
 {
   "pages": [
     "pages/map/map",
-    "pages/myCollect/myCollect",
-    "pages/mine/mine",
-    "pages/updateinfo/index",
     "pages/userinfo/index",
-    "pages/createMarker/createMarker",
+    "pages/updateinfo/index",
     "pages/updateMarker/updateMarker",
-    "pages/searchResult/searchResult"
+    "pages/searchResult/searchResult",
+    "pages/myCollect/myCollect",
+    "pages/createMarker/createMarker",
+    "pages/mine/mine"
   ],
   "window": {
     "backgroundColor": "#fff",
