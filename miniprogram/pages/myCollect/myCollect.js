@@ -8,7 +8,8 @@ Page({
   data: {
     color:"#FFB800",
     openid: '',
-    markers: []
+    markers: [],
+    isNull: true
   },
   handleSuccess () {
     $Message({
@@ -52,7 +53,12 @@ Page({
         that.setData({
           markers: res.result.data
         })
+        if(that.data.markers.length > 0)
+          that.setData({
+            isNull: false
+          })
         console.log(that.data.markers)
+        console.log(that.data.markers.length)
       },
       fail: err => {
         console.error('[云函数] [getCollection] 调用失败', err)

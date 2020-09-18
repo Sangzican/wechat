@@ -21,7 +21,8 @@ Page({
     isCollected: false,
     isShowResult: false,
     resultMarkers: [],
-    collerct: ""
+    collerct: "",
+    setting: {}
   },
   handleSuccess() {
     $Message({
@@ -69,12 +70,13 @@ Page({
     })
   },
   // 获取周围的摊点标记组
-  getAroundMarkers() {
+  getAroundMarkers(latitude, longitude) {
     let that = this;
     wx.cloud.callFunction({
       name: 'getAroundMarkers',
       data: {
-
+        latitude: latitude,
+        longitude: longitude
       },
       success: res => {
         wx.showToast({
@@ -150,7 +152,7 @@ Page({
     // this.myMapContext.setCenterOffset([0.6, 0.5]);
     // this.getLocation();
     let that = this;
-    this.getAroundMarkers();
+
 
     wx.getLocation({
       type: 'gcj02',
@@ -163,8 +165,8 @@ Page({
             longitude: res.longitude,
             latitude: res.latitude,
           },
-          // markers: markers,
         })
+        that.getAroundMarkers(res.latitude, res.longitude);
       }
     })
     this.myMapContext.moveToLocation()

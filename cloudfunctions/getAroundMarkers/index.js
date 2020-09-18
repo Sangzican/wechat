@@ -14,8 +14,8 @@ exports.main = async (event, context) => {
     //order
     return await db.collection('Markers').where({
     //下面为筛选条件 lt = <, gt = >
-    latitude: _.lt(40),
-    latitude: _.gte(35),
+    latitude: _.lt(event.latitude + 5),
+    latitude: _.gte(event.latitude - 5),
     }).get();
   } catch (e) {
     console.error(e);

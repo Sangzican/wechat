@@ -15,7 +15,11 @@
     float: right;
     margin-right: 30rpx;
 }
-
 .ic{
     float: right;
+}
+.text{
+    font-size: 18px;
+    color: #c2c2c2;
+    font-weight: 500;
 }
