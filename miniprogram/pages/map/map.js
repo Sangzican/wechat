@@ -21,7 +21,7 @@ Page({
     isCollected: false,
     isShowResult: false,
     resultMarkers: [],
-    visible1: true
+    collerct: ""
   },
   
   handleSuccess() {
@@ -254,7 +254,8 @@ Page({
       },
       success: function(res) {
         that.setData({
-          isCollected: true
+          isCollected: true,
+          collerct: "已"
         })
         console.log(res)
       },
@@ -273,7 +274,8 @@ Page({
       },
       success: function(res) {
         that.setData({
-          isCollected: false
+          isCollected: false,
+          collerct: ""
         })
         console.log(res)
       },
@@ -293,11 +295,13 @@ Page({
       success: function(res) {
         if(res.result.data.length > 0)
           that.setData({
-            isCollected: true
+            isCollected: true,
+            collerct: "已"
           })
         else 
           that.setData({
-            isCollected: false
+            isCollected: false,
+            collerct: ""
           })
       },
       fail: console.error

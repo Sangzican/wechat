@@ -35,7 +35,14 @@
   z-index: 9999;
   
 }
-
+.marker_image{
+  height: 100px;
+  width: 80px;
+}
+.col-class{
+  height: auto;
+  width: auto;
+}
 
 Page{
   background-color: #fff;
