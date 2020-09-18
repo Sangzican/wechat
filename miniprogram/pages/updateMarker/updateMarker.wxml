@@ -37,5 +37,6 @@
       <map show-location longitude="{{marker_longitude}}" latitude="{{marker_latitude}}"></map>
     </view>
 </i-panel>
+
 <button bindtap="uploadMarker" class="btn" hover-class='btn_hover'>保存</button>
 <i-message id="message" />
