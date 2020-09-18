@@ -212,9 +212,6 @@ Page({
       },
       success: res => {
         console.log('[云函数] [changeUserType] user openid: ', res.result.openid)
-        this.setData({
-          openid: res.result.openid
-        })
       },
       fail: err => {
         console.error('[云函数] [changeUserType] 调用失败', err)

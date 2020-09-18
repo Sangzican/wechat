@@ -59,11 +59,13 @@ Page({
             usertype: "普通用户",
             isHide: true
           })
+          that.changeUserType("普通用户")
         }else {
           that.setData({
             usertype: "摊主",
             isHide: false
           })
+          that.changeUserType("摊主")
         }
         console.log(that.data.usertype)
       },
@@ -72,6 +74,28 @@ Page({
         that.setData({
           usertype : "普通用户",
           isHide: true
+        })
+        that.changeUserType("普通用户")
+      }
+    })
+  },
+  // 修改用户类型
+  changeUserType: function(usertype) {
+    console.log("开始调用changeUserType函数")
+    let that = this
+    wx.cloud.callFunction({
+      name: 'changeUserType',
+      data: {
+        openid: that.data.openid,
+        usertype: usertype
+      },
+      success: res => {
+        console.log('[云函数] [changeUserType] 调用成功 ')
+      },
+      fail: err => {
+        console.error('[云函数] [changeUserType] 调用失败', err)
+        wx.navigateTo({
+          url: '../deployFunctions/deployFunctions',
         })
       }
     })
@@ -104,24 +128,7 @@ Page({
            usertype: "普通用户",
            isHide: true
          })
-    wx.cloud.callFunction({
-      name: 'changeUserType',
-      data: {
-        usertype: "普通用户"
-      },
-      success: res => {
-        console.log('[云函数] [changeUserType] user openid: ', res.result.openid)
-        this.setData({
-          openid: res.result.openid
-        })
-      },
-      fail: err => {
-        console.error('[云函数] [changeUserType] 调用失败', err)
-        wx.navigateTo({
-          url: '../deployFunctions/deployFunctions',
-        })
-      }
-    })
+         that.changeUserType("普通用户")
       },
       fail: console.error
     })
