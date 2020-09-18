@@ -4,6 +4,7 @@ const db = wx.cloud.database()
 let username = ''
 let tel = ''
 let addr = ''
+const { $Message } = require('../../dist/base/index');
 Page({
   data: {
     id: '',
@@ -13,6 +14,12 @@ Page({
     addr: '',
     usertype: ''
   },
+  handleSuccess () {
+    $Message({
+        content: '刷新成功',
+        type: 'success'
+    });
+},
   //查询用户信息
   getUser() {
     var that = this;
@@ -96,6 +103,15 @@ Page({
         })
       }
     })
+    wx.stopPullDownRefresh()
+  },
+  onPullDownRefresh(){
+    var that=this
+    this.onLoad()
+    setTimeout(function () {
+      //要延时执行的代码     
+      that.handleSuccess()
+    }, 1000)
   }
 
 })

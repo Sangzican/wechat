@@ -23,3 +23,4 @@
 	</view>
 </view>
 <button bindtap="updateInfo" class="btn" hover-class='btn_hover'>保存</button>
+<i-message id="message" />

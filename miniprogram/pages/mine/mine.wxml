@@ -1,3 +1,4 @@
+<view class="divid"></view>
 <view class="top">
 	<view class="top2">
 		<image class="avatar" src="{{userInfo.avatarUrl}}"></image>
@@ -22,6 +23,10 @@
 		</i-cell>
 	</view>
 	<view wx:else>
+		<view style="margin-top:10px;"></view>
+		<i-cell title="管理摊主信息" is-link url="/pages/updateMarker/updateMarker">
+			<i-icon slot="icon" type="setup" size="22" color="#f4d307" />
+		</i-cell>
 		<i-cell title="注销摊主身份" is-link bind:click='deluser'>
 			<i-icon slot="icon" type="delete" size="22" color="#f4d307" />
 		</i-cell>
@@ -32,6 +37,7 @@
 			<button bindtap="hideCard">再想想</button>
 			<button bindtap="removeuser">确定</button>
 		</view>
-		
+
 	</view>
+	<i-message id="message" />
 </i-cell-group>

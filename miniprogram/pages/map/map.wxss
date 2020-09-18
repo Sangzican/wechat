@@ -31,20 +31,10 @@
   opacity: 0.7;
 }
 .modalDlg{
-  width: 580rpx;
-  height: 620rpx;
-  position: fixed;
-  top: 50%;
-  left: 0;
+  
   z-index: 9999;
-  margin: -370rpx 85rpx;
-  background-color: #fff;
-  border-radius: 36rpx;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  
 }
-
 
 
 Page{

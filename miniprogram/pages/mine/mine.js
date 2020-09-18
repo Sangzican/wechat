@@ -1,11 +1,14 @@
 let app = getApp
 const db = wx.cloud.database()
+const {
+  $Message
+} = require('../../dist/base/index');
 Page({
   data: {
     showModal: false,
     isHide: true,
     openid: '',
-    id:'',
+    id: '',
     iconSize: [20, 30, 40, 50, 60, 70],
     iconColor: [
       'red', 'orange', 'yellow', 'green', 'rgb(0,255,255)', 'blue', 'purple'
@@ -20,6 +23,12 @@ Page({
     },
     usertype: '普通用户'
   },
+  handleSuccess() {
+    $Message({
+      content: '刷新成功',
+      type: 'success'
+    });
+  },
   deluser: function () {
     this.setData({
       showModal: true
@@ -30,7 +39,7 @@ Page({
       showModal: false
     });
   },
-  getMarkerByUser: function() {
+  getMarkerByUser: function () {
     let that = this
     wx.cloud.callFunction({
       // 云函数名称
@@ -39,29 +48,76 @@ Page({
       data: {
         openid: that.data.openid
       },
-      success: function(res) {
-        console.log(res.result.data[0])
+      success: function (res) {
+        console.log(res.result)
+        if(res.result?.data[0]?._id != undefined)
         that.setData({
           id: res.result.data[0]._id
         })
-        console.log(that.data.id)
+        if(res.result.data.length < 1){
+          that.setData({
+            usertype: "普通用户"
+          })
+        }
+        console.log(that.data.usertype)
+      },
+      fail: function (res) {
+        // console.error
+        that.setData({
+          usertype : "普通用户"
+        })
+        console.log("用户类型为：")
+        console.log(that.data.usertype)
+      }
+    })
+  },
+  // 注销
+  removeuser:function(){
+    let that=this;
+    console.log(that.data.id)
+    wx.cloud.callFunction({
+      // 云函数名称
+      name: 'removeUser',
+      // 传给云函数的参数
+      data: {
+        _openid: that.data.openid,
+        _id: that.data.id
+      },
+      success: function (res) {
+        console.log(res.result)
+        console.log('注销成功')
+        that.setData({
+          showModal: false
+        })
+        wx.showToast({
+          title: '注销成功',
+          icon: 'success',
+          duration: 2000
+         })
+         // 更新用户身份
+    wx.cloud.callFunction({
+      name: 'changeUserType',
+      data: {
+        usertype: "普通用户"
+      },
+      success: res => {
+        console.log('[云函数] [changeUserType] user openid: ', res.result.openid)
+        this.setData({
+          openid: res.result.openid
+        })
+      },
+      fail: err => {
+        console.error('[云函数] [changeUserType] 调用失败', err)
+        wx.navigateTo({
+          url: '../deployFunctions/deployFunctions',
+        })
+      }
+    })
       },
       fail: console.error
     })
   },
-  removeuser:function(){
-    let that=this;
-    console.log(that.data.id)
-    db.collection('Markers').doc(that.data.id).remove({
-      success: function(res) {
-        console.log("注销成功！")
-      },
-      fail: function (res) {
-        console.log(res)
-        console.log("注销失败")
-      }
-    })
-  },
+
   //获取openid
   getopenid() {
     var that = this;
@@ -92,6 +148,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.stopPullDownRefresh()
     let that = this;
     this.getopenid();
     /**
@@ -106,7 +163,7 @@ Page({
           [nickName]: res.userInfo.nickName,
         })
       }
-    });
+    })
     //查询用户表，判断是否为摊主
     db.collection('users').where({
         _openid: this.data.openid
@@ -119,8 +176,12 @@ Page({
               usertype: '摊主'
             })
           }
+        },
+        fail: function (res) {
+          console.log("查询失败！")
         }
-      });
+      })
+    wx.stopPullDownRefresh()
   },
 
   /**
@@ -153,7 +214,12 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    var that=this
+    this.onLoad()
+    setTimeout(function () {
+      //要延时执行的代码     
+      that.handleSuccess()
+    }, 1000)
   },
 
   /**

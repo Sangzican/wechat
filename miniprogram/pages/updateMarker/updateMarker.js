@@ -30,6 +30,7 @@ Page({
         type: 'success'
     });
 },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -74,15 +75,7 @@ Page({
     // that.myMapContext.moveToLocation();
     wx.stopPullDownRefresh()
   },
-  //页面刷新
-  onPullDownRefresh: function () {
-    var that=this
-    this.onLoad()
-    setTimeout(function () {
-      //要延时执行的代码     
-      that.handleSuccess()
-    }, 1000)
-  },
+
   onGetUserInfo: function (e) {
     if (!this.data.logged && e.detail.userInfo) {
       this.setData({
@@ -184,8 +177,8 @@ Page({
   getmarker_phone: function (e) {
     marker_phone = e.detail.detail.value
   },
-  // 上传摊点信息
-  uploadMarker: function () {
+  // 修改摊点信息
+  updateMarker: function () {
     let that = this;
     db.collection('users').where({
         _openid: this.data.openid
@@ -200,28 +193,18 @@ Page({
           console.log("查询失败")
         }
       })
-    // 更新用户身份
-    wx.cloud.callFunction({
-      name: 'changeUserType',
+    db.collection('users').doc(this.data.id).update({
       data: {
-        openid: that.data.openid,
-        usertype: "摊主"
+        usertype: '摊主',
+        done: true
       },
-      success: res => {
-        console.log('[云函数] [changeUserType] user openid: ', res.result.openid)
-        this.setData({
-          openid: res.result.openid
-        })
-
+      success(res) {
+        console.log('修改成功')
       },
-      fail: err => {
-        console.error('[云函数] [changeUserType] 调用失败', err)
-        wx.navigateTo({
-          url: '../deployFunctions/deployFunctions',
-        })
+      fail(res) {
+        console.log("修改失败！")
       }
     })
-
     this.setData({
       marker_title: marker_title,
       marker_phone: marker_phone,
@@ -258,5 +241,12 @@ Page({
       }
     })
   },
-
+  onPullDownRefresh(){
+    var that=this
+    this.onLoad()
+    setTimeout(function () {
+      //要延时执行的代码     
+      that.handleSuccess()
+    }, 1000)
+  }
 })

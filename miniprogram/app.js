@@ -1,8 +1,6 @@
 //app.js
 App({
-  onPullDownRefresh () {
-    console.log(111);
-  },
+  
   onLaunch: function () {
     
     if (!wx.cloud) {

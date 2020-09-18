@@ -1,5 +1,8 @@
 // miniprogram/pages/map/map.js
 const db = wx.cloud.database()
+const {
+  $Message
+} = require('../../dist/base/index')
 Page({
 
   /**
@@ -17,7 +20,15 @@ Page({
     openid: '',
     isCollected: false,
     isShowResult: false,
-    resultMarkers: []
+    resultMarkers: [],
+    visible1: true
+  },
+  
+  handleSuccess() {
+    $Message({
+      content: '刷新成功',
+      type: 'success'
+    });
   },
   handleChange({
     detail
@@ -155,7 +166,9 @@ Page({
         })
       }
     })
-    this.myMapContext.moveToLocation();
+    this.myMapContext.moveToLocation()
+    wx.stopPullDownRefresh()
+    
   },
   bindGetUserInfo: function (e) {
     if (e.detail.userInfo) {
@@ -166,13 +179,13 @@ Page({
       console.log(e.detail.userInfo);
       db.collection("users").add({
         data: {
-          username:e.detail.userInfo.nickName,
-          addr:e.detail.userInfo.province+e.detail.userInfo.city,
+          username: e.detail.userInfo.nickName,
+          addr: e.detail.userInfo.province + e.detail.userInfo.city,
           tel: '',
-          usertype:'普通用户',
+          usertype: '普通用户',
           done: false
         },
-        success: function(res) {
+        success: function (res) {
           // res 是一个对象，其中有 _id 字段标记刚创建的记录的 id
           console.log(res.detail.nickName)
         }
@@ -289,7 +302,7 @@ Page({
       },
       fail: console.error
     })
-  }
+  },
   // /**
   //  * 生命周期函数--监听页面初次渲染完成
   //  */
@@ -322,9 +335,15 @@ Page({
   // /**
   //  * 页面相关事件处理函数--监听用户下拉动作
   //  */
-  // onPullDownRefresh: function () {
-
-  // },
+  //页面刷新
+  onPullDownRefresh: function () {
+    var that=this
+    this.onLoad()
+    setTimeout(function () {
+      //要延时执行的代码     
+      that.handleSuccess()
+    }, 1000)
+  }
 
   // /**
   //  * 页面上拉触底事件的处理函数

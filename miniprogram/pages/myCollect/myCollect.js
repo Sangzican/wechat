@@ -1,4 +1,5 @@
 // miniprogram/pages/myCollect/myCollect.js
+const { $Message } = require('../../dist/base/index');
 Page({
 
   /**
@@ -8,7 +9,12 @@ Page({
     openid: '',
     markers: []
   },
-
+  handleSuccess () {
+    $Message({
+        content: '刷新成功',
+        type: 'success'
+    });
+},
   getOpenid: function() {
     let that = this;
     wx.cloud.callFunction({
@@ -70,6 +76,7 @@ Page({
         })
       }
     }) 
+    wx.stopPullDownRefresh()
   },
 
   // /**
@@ -103,9 +110,14 @@ Page({
   // /**
   //  * 页面相关事件处理函数--监听用户下拉动作
   //  */
-  // onPullDownRefresh: function () {
-
-  // },
+  onPullDownRefresh: function () {
+    var that=this
+    this.onLoad()
+    setTimeout(function () {
+      //要延时执行的代码     
+      that.handleSuccess()
+    }, 1000)
+  },
 
   // /**
   //  * 页面上拉触底事件的处理函数

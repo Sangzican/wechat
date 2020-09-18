@@ -5,3 +5,4 @@
 <i-input value="{{ tel }}" title="联系电话" disabled />
 <i-input value="{{ addr }}" title="地址" disabled />
 <i-input value="{{ usertype }}" title="用户类型" disabled />
+<i-message id="message" />
