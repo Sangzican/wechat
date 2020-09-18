@@ -32,20 +32,27 @@
 			</view>
 
 			<!-- 显示地摊信息卡片，暂时未解决弹窗后用户滑动卡片时同时会移动地图的问题 -->
-			<i-modal  title="{{marker.title}}" visible="{{ showModal }}" bind:ok="collictMarker" bind:cancel="hideCard" ok-text="{{collerct}}收藏" cancel-text="关闭">
-					<!-- <view slot="footer"> -->
+			<i-modal i-class="modal" title="{{marker.title}}" visible="{{ showModal }}" bind:ok="collictMarker" bind:cancel="hideCard" ok-text="{{collerct}}收藏" cancel-text="关闭">
+				<!-- <view slot="footer"> -->
+				<view style="width:100%; heght:100%">
 					<view>
-						<i-row>
-   						 <i-col span="6" i-class="col-class"><image class="marker_image" src="{{marker.imgUrl}}"></image></i-col>
-   						 <i-col span="16" offset="2" i-class="col-class">{{marker.marker_msg}}</i-col>
+						<image class="marker_image" src="{{marker.imgUrl}}"></image>
+					</view>
+					<view class="text">{{marker.marker_msg}}</view>
+					<view>摊主：{{marker.user_name}} 联系方式：{{marker.marker_phone}}</view>
+				</view>
+
+				<!-- <i-row>
+   						 <i-col span="1" i-class="col-class"><image class="marker_image" src="{{marker.imgUrl}}"></image></i-col>
+   						 <i-col span="21" offset="2" i-class="col-class">{{marker.marker_msg}}</i-col>
 						</i-row>
 						<i-row>
   						<i-col span="24" i-class="col-class">摊主：{{marker.user_name}} 联系方式：{{marker.marker_phone}}</i-col>
-  					</i-row>
-					</view>
-					<!-- </view> -->
-				</i-modal>
-				<!-- <i-card title="{{marker.title}}" extra="放置评分的地方" thumb="{{marker.imgUrl}}" id="{{item.id}}">
+  					</i-row> -->
+
+				<!-- </view> -->
+			</i-modal>
+			<!-- <i-card title="{{marker.title}}" extra="放置评分的地方" thumb="{{marker.imgUrl}}" id="{{item.id}}">
 					<view slot="content">{{marker.marker_msg}}</view>
 					<view slot="footer">摊主：{{marker.user_name}} 联系方式：{{marker.marker_phone}}
 						<view>

@@ -36,12 +36,19 @@
   
 }
 .marker_image{
-  height: 100px;
-  width: 80px;
+  float: left;
+  height: 85px;
+  width: 75px;
+}
+.text{
+  margin-top: 20px;
+  margin-left: 80px;
+  width: 180px;
+  height: 70px;
+  word-break: break-all; 
 }
 .col-class{
-  height: auto;
-  width: auto;
+  float: left;
 }
 
 Page{
@@ -76,4 +83,9 @@ Page{
   border-radius: 80rpx;
   margin: 70rpx 50rpx;
   font-size: 35rpx;
+}
+.modal{
+  margin: auto auto;
+  width: 270px;
+  height: 270px;
 }
