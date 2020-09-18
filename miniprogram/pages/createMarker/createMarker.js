@@ -205,13 +205,11 @@ Page({
     // 更新用户身份
     wx.cloud.callFunction({
       name: 'changeUserType',
-
       data: {
         openid: that.data.openid,
         usertype: "摊主"
       },
       success: res => {
-        console.log('[云函数] [changeUserType] user openid: ', res.result.openid)
       },
       fail: err => {
         console.error('[云函数] [changeUserType] 调用失败', err)
@@ -245,7 +243,9 @@ Page({
         wx.showToast({
           title: '创建成功',
         })
-        wx.redirectTo({
+        // 创建成功后跳转页面
+        // 但是它不跳啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊
+        wx.switchTab({
           url: '../mine/mine',
         })
       },

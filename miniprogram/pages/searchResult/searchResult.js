@@ -9,7 +9,8 @@ Page({
   data: {
     searchTitle: '',
     markers: [],
-    isNull: true
+    isNull: true,
+    color: "#FFB800"
   },
 
   /**
@@ -23,8 +24,15 @@ Page({
     wx.stopPullDownRefresh()
   },
   handleClick(){
-    document.getElementById("item.id").style.color="#80848f"
-    //************************************************************************************** */
+    if(this.data.color === "#FFB800")
+      this.setData({
+        color: "#80848f"
+      })
+    else {
+      this.setData({
+        color: "#FFB800"
+      })
+    }
   },
   handleSuccess () {
     $Message({

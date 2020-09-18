@@ -112,6 +112,11 @@ Page({
       //要延时执行的代码     
       that.handleSuccess()
     }, 1000)
+  },
+    /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    this.onLoad()
   }
-
 })
