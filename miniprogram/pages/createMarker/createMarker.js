@@ -204,7 +204,6 @@ Page({
     // 更新用户身份
     wx.cloud.callFunction({
       name: 'changeUserType',
-
       data: {
         openid: that.data.openid,
         usertype: "摊主"

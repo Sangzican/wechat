@@ -22,6 +22,7 @@ Page({
     isShowResult: false,
     resultMarkers: [],
     collerct: ""
+
   },
   handleSuccess() {
     $Message({
@@ -257,7 +258,6 @@ Page({
         that.setData({
           isCollected: true,
           collerct: "已"
-
         })
         console.log(res)
       },

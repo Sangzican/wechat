@@ -78,7 +78,6 @@ Page({
       }
     }) 
     wx.stopPullDownRefresh()
-
   },
   handleClick(){
     this.setData({
