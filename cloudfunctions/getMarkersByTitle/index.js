@@ -14,7 +14,8 @@ exports.main = async (event, context) => {
       return await db.collection('Markers').where({
       //下面为筛选条件
       title: {
-        $regex: '.*' + event.title + '.*'  // 正则表达式
+        $regex: '.*' + event.title + '.*',  // 正则表达式
+        $options: 'i' // //$options:'1' 代表这个条件不区分大小写
       }
     }).get({
       success: function (res) {
