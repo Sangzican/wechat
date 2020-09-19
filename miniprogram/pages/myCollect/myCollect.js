@@ -68,6 +68,26 @@ Page({
       }
     })
   },
+  removeCollect() {
+    let that = this;
+    wx.cloud.callFunction({
+      // 云函数名称
+      name: 'removeCollect',
+      // 传给云函数的参数
+      data: {
+        openid: that.data.openid,
+        _id: that.data.marker._id
+      },
+      success: function(res) {
+        that.setData({
+          isCollected: false,
+          collerct: ""
+        })
+        console.log(res)
+      },
+      fail: console.error
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -85,7 +105,9 @@ Page({
     }) 
     wx.stopPullDownRefresh()
   },
-  handleClick(){
+  handleClick(e){
+    console.log(e) 
+    console.log(e.currentTarget)
     this.setData({
       color:"#80848f"
     })

@@ -30,6 +30,8 @@ Page({
         that.setData({
           openid: res.result.openid
         })
+        // 获取到openid后在调用获取用户信息
+        that.getUser()
       },
       fail(res) {
         console.log("获取失败！", res)
@@ -63,9 +65,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that = this;
-    that.getopenid();
-    that.getUser();
+    // var that = this;
+    this.getopenid();
     wx.stopPullDownRefresh()
   },
 
@@ -80,7 +81,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.onLoad()
   },
 
   /**

@@ -15,6 +15,7 @@
 			<!-- <button class="btn1" bindtap="getCollections" plain>店铺位置</button> -->
 			<!-- <button class="btn2" bindtap="handleClick" plain>取消收藏</button>  -->
 			<i-icon type="collection_fill" class="ic" size="28" color="{{color}}" bindtap="handleClick" />
+			<i-icon type="coordinates_fill" class="ic" size="28" bindtap="goToMarker"/>
 			<view style="margin-top:8px;"></view>
 		</view>
 	</i-card>

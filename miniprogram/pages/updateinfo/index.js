@@ -12,14 +12,20 @@ Page({
     username: '',
     tel: '',
     addr: '',
-    usertype: ''
+    usertype: '',
+    //用户个人信息
+    userInfo: {
+      avatarUrl: "", //用户头像
+      nickName: "", //用户昵称
+      city: ""
+    },
   },
   handleSuccess () {
     $Message({
         content: '刷新成功',
         type: 'success'
     });
-},
+  },
   //查询用户信息
   getUser() {
     var that = this;
@@ -80,17 +86,14 @@ Page({
         that.setData({
           openid: res.result.openid
         })
+        that.getUser()
       },
       fail(res) {
         console.log("获取失败！", res)
       }
     })
   },
-
-  onLoad: function (options) {
-    var that = this;
-    that.getopenid();
-    that.getUser();
+  getUserInfo() {
     wx.getUserInfo({
       success: function (res) {
         var avatarUrl = 'userInfo.avatarUrl';
@@ -103,6 +106,10 @@ Page({
         })
       }
     })
+  },
+  onLoad: function (options) {
+    this.getopenid();
+    this.getUserInfo();
     wx.stopPullDownRefresh()
   },
   onPullDownRefresh(){
