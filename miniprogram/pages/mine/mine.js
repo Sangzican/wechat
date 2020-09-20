@@ -127,7 +127,7 @@ Page({
          that.setData({
            usertype: "普通用户",
            isHide: true
-         })-
+         })
          that.changeUserType("普通用户")
       },
       fail: console.error

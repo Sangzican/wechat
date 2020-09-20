@@ -21,8 +21,7 @@ Page({
     isCollected: false,
     isShowResult: false,
     resultMarkers: [],
-    collerct: "",
-    setting: {}
+    collerct: ""
   },
   handleSuccess() {
     $Message({
@@ -213,6 +212,7 @@ Page({
         }
       });
     }
+    this.onPullDownRefresh()
   },
   //搜索功能
   searchEvent(e) {

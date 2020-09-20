@@ -16,7 +16,7 @@
 
 .modalDlg {
     width: 580rpx;
-    height: 620rpx;
+    height: 520rpx;
     position: fixed;
     top: 50%;
     left: 0;
@@ -53,4 +53,15 @@
     justify-content: center;
     margin-top: 8px;
     color: #535354;
+}
+
+.btn1:not([size='mini']){
+    margin-top: 30px;
+    width: 100px;
+    height: 30px;
+}
+.btn2:not([size='mini']){
+    margin-top: 30px;
+    width: 100px;
+    height: 30px;
 }

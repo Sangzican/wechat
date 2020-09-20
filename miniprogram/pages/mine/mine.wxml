@@ -32,11 +32,12 @@
 		</i-cell>
 
 		<view class="mask" catchtouchmove="preventTouchMove" wx:if="{{showModal}}"></view>
-		<view class="modalDlg" wx:if="{{showModal}}">
+		<view class="modalDlg" wx:if="{{showModal}}" >
 			<text>确定注销您的摊主身份吗</text>
-			<button bindtap="hideCard">再想想</button>
-			<button bindtap="removeuser">确定</button>
+			<button class="btn1" type="primary" bindtap="hideCard">再想想</button>
+			<button class="btn2" type="primary" bindtap="removeuser">确定</button>
 		</view>
+
 
 	</view>
 	<i-message id="message" />

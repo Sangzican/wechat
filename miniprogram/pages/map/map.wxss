@@ -36,19 +36,12 @@
   
 }
 .marker_image{
-  float: left;
-  height: 85px;
-  width: 75px;
-}
-.text{
-  margin-top: 20px;
-  margin-left: 80px;
-  width: 180px;
-  height: 70px;
-  word-break: break-all; 
+  height: 100px;
+  width: 80px;
 }
 .col-class{
-  float: left;
+  height: auto;
+  width: auto;
 }
 
 Page{
